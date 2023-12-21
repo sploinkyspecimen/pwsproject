@@ -191,18 +191,29 @@ cards_drawn = []
 bet_placed = False
 total_value = 0
 
+def create_new_deck():
+    global deck
+    response = messagebox.askyesno("Leeg Kaartendeck", "Het kaartendeck is leeg. Wil je een nieuw deck maken?")
+    if response:
+        deck = create_deck()
+        random.shuffle(deck)
+        display_card_backs()
+
 def reveal_card():
     global current_card, bet_button
     if bet_placed:
         if deck:
             current_card = draw_from_deck()
-            card_image = card_images[current_card]
-            card_button.config(image=card_image)
-            card_button.image = card_image
-            bet_button.config(state=tk.DISABLED)  # Disable placing another bet until the round ends
-            calculate_card_value(current_card)  # Calculate the card value here
+            card_image = card_images.get(current_card)
+            if card_image:
+                card_button.config(image=card_image)
+                card_button.image = card_image
+                bet_button.config(state=tk.DISABLED)
+                calculate_card_value(current_card)
+            else:
+                result_label.config(text="Afbeelding niet gevonden voor de kaart.")
         else:
-            result_label.config(text="Het kaartendeck is leeg.")
+            create_new_deck()
     else:
         result_label.config(text="Plaats eerst een inzet.")
 
