@@ -44,6 +44,7 @@ def load_card_images():
 
     return card_images
 
+# Function to display card backs
 def display_card_backs():
     global deck
 

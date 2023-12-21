@@ -70,7 +70,7 @@ if sys.platform == "win32":
 
 setup(
     name="pwsproject casino spell",
-    version="1.1",
+    version="1.2",
     description="casino spell gemaakt voor pws",
     options={"build_exe": build_exe_options},
     executables=[Executable("test.py", base=base)],
