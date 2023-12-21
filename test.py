@@ -44,7 +44,6 @@ def load_card_images():
 
     return card_images
 
-# Function to display card backs
 def display_card_backs():
     global deck
 
@@ -53,12 +52,12 @@ def display_card_backs():
     img.thumbnail((100, 150), resample=Image.LANCZOS)
     card_back = ImageTk.PhotoImage(img)
 
-    # Clear the deck_frame before adding new cards
-    for widget in deck_frame.winfo_children():
+    # Clear the existing card_back_frame before adding new cards
+    for widget in card_back_frame.winfo_children():
         widget.destroy()
 
     for i, _ in enumerate(deck):
-        card_image = tk.Label(deck_frame, image=card_back)
+        card_image = tk.Label(card_back_frame, image=card_back)
         card_image.grid(row=0, column=i)
         card_image.image = card_back
 
